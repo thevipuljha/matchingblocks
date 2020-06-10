@@ -1,0 +1,29 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden auto;
+}
+
+header {
+    display: inline-block;
+    width: 100%;
+}
+
+button {
+    user-select: none;
+    border-radius: 10px;
+}
+
+/* header end */
+
+main {
+    display: inline-block;
+    width: 90%;
+    margin-left: 5%;
+}
+
+input,
+button {
+    outline: none;
+}
