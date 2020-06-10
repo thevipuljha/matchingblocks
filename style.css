@@ -3,6 +3,7 @@ body {
     height: 100%;
     margin: 0 auto;
     overflow: hidden auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 header {
@@ -14,12 +15,10 @@ header h2 {
     margin: 5% auto;
     width: max-content;
     color: crimson;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     border-bottom: 3px solid crimson;
 }
 
 /* header end */
-
 main {
     width: 100vw;
     height: auto;
@@ -30,12 +29,12 @@ main {
 }
 
 .blocks-container {
+    margin-top: 10%;
     width: 80vw;
     height: auto;
-    border: 2px solid black;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 15vw);
+    grid-template-rows: repeat(4, 15vw);
     gap: 1vw;
     justify-items: center;
     align-items: center;
@@ -46,9 +45,66 @@ main {
 .block-button {
     user-select: none;
     border-radius: 10px;
-    background-size: 100% 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 15vw;
     height: 15vw;
+}
+
+footer {
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    bottom: 30px;
+}
+
+.options-div {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-flow: row nowrap;
+}
+
+.options-div button {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 100%;
+    width: 20%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.themes-div {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-top: 8px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    overflow: auto hidden;
+    /* visibility: hidden; */
+}
+
+.themes-div div {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0% 2%;
+    font-size: 0.8em;
+    width: 150px;
+    white-space: nowrap;
+}
+
+.theme-pic {
+    width: 36px;
+    height: 36px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 0px;
+    margin-bottom: 2px;
 }
 
 input,
