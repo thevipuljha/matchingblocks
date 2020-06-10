@@ -49,6 +49,8 @@ main {
     background-repeat: no-repeat;
     width: 15vw;
     height: 15vw;
+    background-color: teal;
+    border: 1px solid black;
 }
 
 footer {
@@ -83,6 +85,8 @@ footer {
     flex-flow: row nowrap;
     align-items: center;
     overflow: auto hidden;
+    width: 95%;
+    margin: 5px auto;
     /* visibility: hidden; */
 }
 
@@ -94,7 +98,6 @@ footer {
     justify-content: space-evenly;
     padding: 0% 2%;
     font-size: 0.8em;
-    width: 150px;
     white-space: nowrap;
 }
 
@@ -110,4 +113,27 @@ footer {
 input,
 button {
     outline: none;
+}
+
+@media screen and (min-width:800px) {
+    .blocks-container {
+        width: 60vw;
+        grid-template-columns: repeat(5, 10vw);
+        grid-template-rows: repeat(4, 10vw);
+        gap: 1vw;
+    }
+
+    .block-button {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .options-div button {
+        width: 20%;
+    }
+
+    .theme-pic {
+        width: 36px;
+        height: 36px;
+    }
 }
