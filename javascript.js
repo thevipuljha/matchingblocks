@@ -2,7 +2,7 @@ const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) => document.getElementsByClassName(className);
 const themeList = ["Default", "Ben", "Cartoons", "DC", "Marvel", "Pokemon", "Programming", "TechBrands"];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
-const getColorName = () => localStorage.getItem("color") || "steelblue";
+const getColorName = () => localStorage.getItem("color") || "#1e90ff";
 let tileClickCount = 0,
     firstTileIndex = null,
     secondTileIndex = null,
@@ -14,8 +14,12 @@ function showThemeSelectors() {
 
 }
 
-function changeBlocksColor() {
-
+function changeBlocksColor(colorPicker) {
+    localStorage.setItem("color", colorPicker.value);
+    const blocks = elementsByclass("block-button");
+    for (let index = 0; index < blocks.length; index++) {
+        blocks[index].style.backgroundColor = colorPicker.value;
+    }
 }
 // creating shuffled imageList for a theme
 function setButtonImageOnClick() {
@@ -96,6 +100,7 @@ const createBlocks = () => {
         let newBlock = document.createElement("button");
         newBlock.className = "block-button";
         newBlock.setAttribute("onclick", `blockClicked(this,${index})`);
+        newBlock.style.backgroundColor = getColorName();
         blocksContainer.appendChild(newBlock);
     }
 };
@@ -113,8 +118,9 @@ const initiate = () => {
     createBlocks();
     setThemeSelectors();
     elementById("newGameButton").setAttribute("onclick", "resetGame()");
-    elementById("colorButton").setAttribute("onclick", "changeBlocksColor()");
+    elementById("colorButton").setAttribute("onchange", "changeBlocksColor(this)");
     elementById("themeButton").setAttribute("onclick", "showThemeSelectors()");
+    elementById("colorButton").setAttribute("value", getColorName());
 };
 
 window.onload = initiate;

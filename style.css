@@ -49,7 +49,6 @@ main {
     background-repeat: no-repeat;
     width: 15vw;
     height: 15vw;
-    background-color: teal;
     border: 1px solid black;
 }
 
@@ -75,6 +74,10 @@ footer {
     width: 20%;
     border-radius: 10px;
     text-align: center;
+}
+
+#colorButton {
+    border: 1px;
 }
 
 .themes-div {
