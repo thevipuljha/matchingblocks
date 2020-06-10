@@ -2,6 +2,7 @@ const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) => document.getElementsByClassName(className);
 const themeList = ["Default", "Ben", "Cartoons", "DC", "Marvel", "Pokemon", "Programming", "TechBrands"];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
+const getColorName = () => localStorage.getItem("color") || "steelblue";
 let tileClickCount = 0,
     firstTileIndex = null,
     secondTileIndex = null,
@@ -9,15 +10,13 @@ let tileClickCount = 0,
 let imageList = getThemeImageList(getThemeName());
 const isPairFound = () => imageList[secondTileIndex] == imageList[firstTileIndex];
 
+function showThemeSelectors() {
 
+}
 
-// setting images on blocks according to theme
-// function setThemePicOnBlocks(imageList) {
-//     const blockButtons = elementsByclass("block-button");
-//     for (let index = 0; index < 20; index++) {
-//         blockButtons[index].style.backgroundImage = imageList[index];
-//     }
-// }
+function changeBlocksColor() {
+
+}
 // creating shuffled imageList for a theme
 function setButtonImageOnClick() {
     const blocks = elementsByclass("block-button");
@@ -25,9 +24,9 @@ function setButtonImageOnClick() {
         blocks[index].style.backgroundImage = "none";
     }
     if (tileClickCount == 1) {
-        blocks[firstTileIndex].style.backgroundImage = imageList[firstTileIndex];
+        blocks[secondTileIndex].style.backgroundImage = imageList[secondTileIndex];
     }
-    blocks[secondTileIndex].style.backgroundImage = imageList[secondTileIndex];
+    blocks[firstTileIndex].style.backgroundImage = imageList[firstTileIndex];
 }
 
 function setPairedButtonsOff() {
@@ -35,15 +34,17 @@ function setPairedButtonsOff() {
     elementsByclass("block-button")[secondTileIndex].style.backgroundImage = imageList[secondTileIndex];
     elementsByclass("block-button")[firstTileIndex].disabled = true;
     elementsByclass("block-button")[secondTileIndex].disabled = true;
+    elementsByclass("block-button")[firstTileIndex].innerHTML = "PAIRED";
+    elementsByclass("block-button")[secondTileIndex].innerHTML = "PAIRED";
 }
 
 function secondBlockClicked() {
-    elementsByclass("block-button")[firstTileIndex].style.backgroundImage = "none";
-    elementsByclass("block-button")[secondTileIndex].style.backgroundImage = "none";
+    // elementsByclass("block-button")[firstTileIndex].style.backgroundImage = "none";
+    // elementsByclass("block-button")[secondTileIndex].style.backgroundImage = "none";
     if (isPairFound()) {
         totalScore++;
         setPairedButtonsOff();
-        if (score == 10) {
+        if (totalScore == 10) {
             resetGame();
         }
     }
@@ -99,6 +100,8 @@ const createBlocks = () => {
     }
 };
 const resetGame = () => {
+    elementsByclass("block-button")[firstTileIndex].style.backgroundImage = "none";
+    elementsByclass("block-button")[secondTileIndex].style.backgroundImage = "none";
     tileClickCount = 0,
         firstTileIndex = null,
         secondTileIndex = null,
@@ -109,6 +112,9 @@ const resetGame = () => {
 const initiate = () => {
     createBlocks();
     setThemeSelectors();
+    elementById("newGameButton").setAttribute("onclick", "resetGame()");
+    elementById("colorButton").setAttribute("onclick", "changeBlocksColor()");
+    elementById("themeButton").setAttribute("onclick", "showThemeSelectors()");
 };
 
 window.onload = initiate;
