@@ -4,14 +4,23 @@ const themeList = ["Default", "Ben", "Cartoons", "DC", "Marvel", "Pokemon", "Pro
 const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColorName = () => localStorage.getItem("color") || "#1e90ff";
 let tileClickCount = 0,
-    firstTileIndex = null,
-    secondTileIndex = null,
+    firstTileIndex = 0,
+    secondTileIndex = 0,
     totalScore = 0;
 let imageList = getThemeImageList(getThemeName());
 const isPairFound = () => imageList[secondTileIndex] == imageList[firstTileIndex];
 
 function showThemeSelectors() {
+    if (elementById("themeSelector").style.visibility == "visible") {
+        elementById("themeSelector").style.visibility = "hidden";
+    } else {
+        elementById("themeSelector").style.visibility = "visible";
+    }
+}
 
+function changeTheme(theme) {
+    localStorage.setItem("theme", theme);
+    resetGame();
 }
 
 function changeBlocksColor(colorPicker) {
@@ -75,7 +84,7 @@ function setThemeSelectors() {
         const themeButton = themeButtons[index];
         themeButton.id = themeList[index];
         themeButton.style.backgroundImage = `url(images/${themeButton.id}/image0.png)`;
-        // themeButton.setAttribute("onclick", "localStorage.setItem('theme',this.id)");
+        themeButton.setAttribute("onclick", "changeTheme(this.id)");
     }
 }
 
@@ -105,11 +114,12 @@ const createBlocks = () => {
     }
 };
 const resetGame = () => {
+
     elementsByclass("block-button")[firstTileIndex].style.backgroundImage = "none";
     elementsByclass("block-button")[secondTileIndex].style.backgroundImage = "none";
     tileClickCount = 0,
-        firstTileIndex = null,
-        secondTileIndex = null,
+        firstTileIndex = 0,
+        secondTileIndex = 0,
         totalScore = 0;
     imageList = getThemeImageList(getThemeName());
 }

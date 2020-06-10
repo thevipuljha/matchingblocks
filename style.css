@@ -90,7 +90,7 @@ footer {
     overflow: auto hidden;
     width: 95%;
     margin: 5px auto;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .themes-div div {
