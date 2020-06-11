@@ -2,7 +2,7 @@ const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) => document.getElementsByClassName(className);
 const themeList = ["Ben", "Cartoons", "DC", "Default", "Marvel", "Pokemon", "Programming", "TechBrands"];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
-const getColorName = () => localStorage.getItem("color") || "#1e90ff";
+const getColorName = () => localStorage.getItem("color") || "#1E90FF";
 let tileClickCount = 0,
     firstTileIndex = 0,
     secondTileIndex = 0,
@@ -114,9 +114,12 @@ const createBlocks = () => {
     }
 };
 const resetGame = () => {
-
-    elementsByclass("block-button")[firstTileIndex].style.backgroundImage = "none";
-    elementsByclass("block-button")[secondTileIndex].style.backgroundImage = "none";
+    const blocks = elementsByclass("block-button");
+    for (let index = 0; index < blocks.length; index++) {
+        blocks[index].disabled = false;
+        blocks[index].style.backgroundImage = "none";
+        blocks[index].innerHTML = "";
+    }
     tileClickCount = 0,
         firstTileIndex = 0,
         secondTileIndex = 0,
