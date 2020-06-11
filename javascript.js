@@ -56,6 +56,7 @@ function secondBlockClicked() {
         totalScore++;
         setPairedButtonsOff();
         if (totalScore == 10) {
+            alert("You Won (~ . ~)");
             resetGame();
         }
     }
