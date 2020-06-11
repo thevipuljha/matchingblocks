@@ -14,10 +14,10 @@ let imageList = getThemeImageList(getThemeName());
 const isPairFound = () => imageList[secondTileIndex] == imageList[firstTileIndex];
 
 function showThemeSelectors() {
-    if (elementById("themeSelector").style.visibility == "visible") {
-        elementById("themeSelector").style.visibility = "hidden";
+    if (elementById("themeSelector").style.display == "flex") {
+        elementById("themeSelector").style.display = "none";
     } else {
-        elementById("themeSelector").style.visibility = "visible";
+        elementById("themeSelector").style.display = "flex";
     }
 }
 
@@ -59,7 +59,8 @@ function secondBlockClicked() {
         totalScore++;
         setPairedButtonsOff();
         if (totalScore == 10) {
-            localStorage.setItem("winCount", getTotalWinCount() + 1)
+            let totalWinCount = Number(getTotalWinCount()) + 1;
+            localStorage.setItem("winCount", totalWinCount)
             resetGame();
             alert("You Won (~ . ~)");
         }
