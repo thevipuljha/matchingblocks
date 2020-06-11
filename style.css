@@ -90,20 +90,19 @@ footer {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-around;
     overflow: auto hidden;
-    width: 100%;
+    width: max-content;
     margin: 10px auto;
     visibility: hidden;
 }
 
 .themes-div div {
+    margin: 2%;
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 5px;
+    justify-content: space-between;
     font-size: 0.8em;
     white-space: nowrap;
 }
@@ -141,6 +140,15 @@ button {
 
     #colorButton {
         width: 148px
+    }
+
+    .themes-div {
+        width: 80%;
+        justify-content: space-around;
+    }
+
+    .themes-div div {
+        margin: 2% 0px;
     }
 
     .theme-pic {
