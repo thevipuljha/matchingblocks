@@ -3,6 +3,7 @@ const elementsByclass = (className) => document.getElementsByClassName(className
 const themeList = ["Ben", "Cartoons", "DC", "Default", "Marvel", "Pokemon", "Programming", "TechBrands"];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColorName = () => localStorage.getItem("color") || "#1E90FF";
+const showThemeName = () => elementById("currentThemeName").innerText = getThemeName();
 let tileClickCount = 0,
     firstTileIndex = 0,
     secondTileIndex = 0,
@@ -21,6 +22,7 @@ function showThemeSelectors() {
 function changeTheme(theme) {
     localStorage.setItem("theme", theme);
     resetGame();
+    showThemeName();
 }
 
 function changeBlocksColor(colorPicker) {
@@ -133,6 +135,7 @@ const initiate = () => {
     elementById("colorButton").setAttribute("onchange", "changeBlocksColor(this)");
     elementById("themeButton").setAttribute("onclick", "showThemeSelectors()");
     elementById("colorButton").setAttribute("value", getColorName());
+    showThemeName();
 };
 
 window.onload = initiate;
