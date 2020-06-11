@@ -2,72 +2,95 @@ const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) => document.getElementsByClassName(className);
 const themeList = ["Ben", "Cartoons", "DC", "Default", "Marvel", "Pokemon", "Programming", "TechBrands"];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
-const getColorName = () => localStorage.getItem("color") || "#1E90FF";
-const showThemeName = () => elementById("currentThemeName").innerText = getThemeName();
+const getColor = () => localStorage.getItem("color") || "#1E90FF";
 const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
+const showThemeName = () => elementById("currentThemeName").innerText = getThemeName();
 const showTotalWinCount = () => elementById("totalWinCount").innerText = getTotalWinCount();
-let tileClickCount = 0,
-    firstTileIndex = 0,
-    secondTileIndex = 0,
-    totalScore = 0;
-let imageList = getThemeImageList(getThemeName());
+const addEvent = (element, event, task) => element.setAttribute(event, task);
+const getBlocks = () => elementsByclass("block-button");
+const setBackground = (element, image) => element.style.backgroundImage = image;
 const isPairFound = () => imageList[secondTileIndex] == imageList[firstTileIndex];
+const themeSelectorDisplay = (value) => elementById("themeSelector").style.display = value;
+let tileClickCount, firstTileIndex, secondTileIndex, totalScore;
+let imageList = getThemeImageList();
 
-function showThemeSelectors() {
+// toggling theme selectors div on theme button click
+function toggleThemeSelectors() {
     if (elementById("themeSelector").style.display == "flex") {
-        elementById("themeSelector").style.display = "none";
+        themeSelectorDisplay("none");
     } else {
-        elementById("themeSelector").style.display = "flex";
+        themeSelectorDisplay("flex");
     }
 }
 
+//  changing theme to selected theme
 function changeTheme(theme) {
     localStorage.setItem("theme", theme);
-    resetGame();
+    startNewGame();
+}
+// changing blocks color according to selected color
+function changeBlocksColor(selectedColor) {
+    localStorage.setItem("color", selectedColor);
+    const blocks = elementsByclass("block-button");
+    for (let index = 0; index < blocks.length; index++) {
+        blocks[index].style.backgroundColor = selectedColor;
+    }
 }
 
-function changeBlocksColor(colorPicker) {
-    localStorage.setItem("color", colorPicker.value);
-    const blocks = elementsByclass("block-button");
-    for (let index = 0; index < blocks.length; index++) {
-        blocks[index].style.backgroundColor = colorPicker.value;
+// making paired blocks different from different from others
+function makeBlocksPaired() {
+    const blocks = getBlocks();
+    blocks[firstTileIndex].disabled = true;
+    blocks[secondTileIndex].disabled = true;
+    blocks[firstTileIndex].innerHTML = "&checkmark;";
+    blocks[secondTileIndex].innerHTML = "&checkmark;";
+}
+
+// task to perform on blocks paired 
+function pairFound() {
+    makeBlocksPaired();
+    if (totalScore == 10) {
+        localStorage.setItem("winCount", Number(getTotalWinCount()) + 1)
+        alert("You Won (~ . ~)");
+        startNewGame();
     }
 }
-// creating shuffled imageList for a theme
-function setButtonImageOnClick() {
-    const blocks = elementsByclass("block-button");
-    for (let index = 0; index < blocks.length; index++) {
-        blocks[index].style.backgroundImage = "none";
-    }
+
+// remove background image from current clicked blocks
+function setSelectedButtonImagesOff() {
+    const blocks = getBlocks();
+    setBackground(blocks[secondTileIndex], "none");
+    setBackground(blocks[firstTileIndex], "none");
+}
+// setting corresponding image on block on click
+function setButtonImagesOnClick() {
+    const blocks = getBlocks();
     if (tileClickCount == 1) {
-        blocks[secondTileIndex].style.backgroundImage = imageList[secondTileIndex];
+        setBackground(blocks[secondTileIndex], imageList[secondTileIndex]);
     }
-    blocks[firstTileIndex].style.backgroundImage = imageList[firstTileIndex];
+    setBackground(blocks[firstTileIndex], imageList[firstTileIndex]);
 }
 
-function setPairedButtonsOff() {
-    elementsByclass("block-button")[firstTileIndex].disabled = true;
-    elementsByclass("block-button")[secondTileIndex].disabled = true;
-    elementsByclass("block-button")[firstTileIndex].innerHTML = "&checkmark;";
-    elementsByclass("block-button")[secondTileIndex].innerHTML = "&checkmark;";
-}
-
-function secondBlockClicked() {
-    // elementsByclass("block-button")[firstTileIndex].style.backgroundImage = "none";
-    // elementsByclass("block-button")[secondTileIndex].style.backgroundImage = "none";
-    if (isPairFound()) {
-        totalScore++;
-        setPairedButtonsOff();
-        if (totalScore == 10) {
-            let totalWinCount = Number(getTotalWinCount()) + 1;
-            localStorage.setItem("winCount", totalWinCount)
-            resetGame();
-            alert("You Won (~ . ~)");
-        }
+// this block of code run on blocks click
+function blockClicked(clickedIndex) {
+    setSelectedButtonImagesOff();
+    if (tileClickCount == 0) {
+        firstTileIndex = clickedIndex;
     }
+    secondTileIndex = clickedIndex;
+    if (firstTileIndex == secondTileIndex) {
+        tileClickCount = 0;
+    }
+    setButtonImagesOnClick();
+    if (tileClickCount == 1 && isPairFound()) {
+        pairFound();
+    }
+    tileClickCount = (tileClickCount + 1) % 2;
 }
 
-function getThemeImageList(themeName) {
+// creating shuffled list of image paths according to theme
+function getThemeImageList() {
+    const themeName = getThemeName();
     let imageList = [];
     for (let index = 0; index < 10; index++) {
         imageList.push(`url(images/${themeName}/image${index}.png)`);
@@ -81,67 +104,59 @@ function getThemeImageList(themeName) {
     }
     return imageList;
 }
-// adding pictures and event handlers on themeselectors buttons
+
+//starting or building new game
+const startNewGame = () => {
+    const blocks = getBlocks();
+    for (let index = 0; index < blocks.length; index++) {
+        blocks[index].disabled = false;
+        setBackground(blocks[index], "none");
+        blocks[index].innerText = "";
+    }
+    tileClickCount = 0;
+    firstTileIndex = 0;
+    secondTileIndex = 0;
+    totalScore = 0;
+    imageList = getThemeImageList();
+    showThemeName();
+    showTotalWinCount();
+    elementById("colorButton").value = getColor();
+}
+
+// adding eventListeners to html elements
+function addEventListeners() {
+    addEvent(elementById("newGameButton"), "onclick", "startNewGame()");
+    addEvent(elementById("colorButton"), "onchange", "changeBlocksColor(this.value)");
+    addEvent(elementById("themeButton"), "onclick", "toggleThemeSelectors()");
+}
+// adding pictures and event handlers on themeselector buttons
 function setThemeSelectors() {
     const themeButtons = elementsByclass("theme-pic");
     for (let index = 0; index < themeButtons.length; index++) {
         const themeButton = themeButtons[index];
-        themeButton.id = themeList[index];
         themeButton.style.backgroundImage = `url(images/${themeButton.id}/image0.png)`;
-        themeButton.setAttribute("onclick", "changeTheme(this.id)");
+        themeButton.setAttribute("onclick", "changeTheme(this.title)");
     }
 }
 
-function blockClicked(clickedButton, clickedIndex) {
-    if (tileClickCount == 0) {
-        firstTileIndex = clickedIndex;
-    }
-    secondTileIndex = clickedIndex;
-    if (firstTileIndex == secondTileIndex) {
-        tileClickCount = 0;
-    }
-    setButtonImageOnClick();
-    if (tileClickCount == 1) {
-        secondBlockClicked();
-    }
-    tileClickCount = (tileClickCount + 1) % 2;
-}
 //creating blocks for the game
 const createBlocks = () => {
     const blocksContainer = elementById("blocksContainer");
     for (let index = 0; index < 20; index++) {
         let newBlock = document.createElement("button");
         newBlock.className = "block-button";
-        newBlock.setAttribute("onclick", `blockClicked(this,${index})`);
-        newBlock.style.backgroundColor = getColorName();
+        newBlock.setAttribute("onclick", `blockClicked(${index})`);
+        newBlock.style.backgroundColor = getColor();
         blocksContainer.appendChild(newBlock);
     }
 };
-const resetGame = () => {
-    const blocks = elementsByclass("block-button");
-    for (let index = 0; index < blocks.length; index++) {
-        blocks[index].disabled = false;
-        blocks[index].style.backgroundImage = "none";
-        blocks[index].innerHTML = "";
-    }
-    tileClickCount = 0,
-        firstTileIndex = 0,
-        secondTileIndex = 0,
-        totalScore = 0;
-    imageList = getThemeImageList(getThemeName());
-    showThemeName();
-    showTotalWinCount();
-}
-// initial function to run on page load
+
+// initial function to run on page load completion
 const initiate = () => {
     createBlocks();
     setThemeSelectors();
-    elementById("newGameButton").setAttribute("onclick", "resetGame()");
-    elementById("colorButton").setAttribute("onchange", "changeBlocksColor(this)");
-    elementById("themeButton").setAttribute("onclick", "showThemeSelectors()");
-    elementById("colorButton").setAttribute("value", getColorName());
-    showThemeName();
-    showTotalWinCount();
+    addEventListeners();
+    startNewGame();
 };
 
 window.onload = initiate;
