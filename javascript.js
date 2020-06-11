@@ -43,12 +43,10 @@ function setButtonImageOnClick() {
 }
 
 function setPairedButtonsOff() {
-    elementsByclass("block-button")[firstTileIndex].style.backgroundImage = imageList[firstTileIndex];
-    elementsByclass("block-button")[secondTileIndex].style.backgroundImage = imageList[secondTileIndex];
     elementsByclass("block-button")[firstTileIndex].disabled = true;
     elementsByclass("block-button")[secondTileIndex].disabled = true;
-    elementsByclass("block-button")[firstTileIndex].innerHTML = "PAIRED";
-    elementsByclass("block-button")[secondTileIndex].innerHTML = "PAIRED";
+    elementsByclass("block-button")[firstTileIndex].innerHTML = "&checkmark;";
+    elementsByclass("block-button")[secondTileIndex].innerHTML = "&checkmark;";
 }
 
 function secondBlockClicked() {
