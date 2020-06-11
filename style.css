@@ -12,7 +12,8 @@ header {
 }
 
 header h2 {
-    margin: 5% auto;
+    margin: 0 auto;
+    margin-top: 20px;
     width: max-content;
     color: crimson;
     border-bottom: 3px solid crimson;
@@ -21,21 +22,18 @@ header h2 {
 /* header end */
 main {
     width: 100vw;
-    height: auto;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: max-content;
+    margin: 56px auto;
 }
 
 .blocks-container {
-    margin-top: 10%;
+    margin: 0 auto;
     width: 90vw;
     height: auto;
     display: grid;
     grid-template-columns: repeat(5, 16vw);
     grid-template-rows: repeat(4, 16vw);
-    gap: 1vw;
+    gap: 0.5vw;
     justify-items: center;
     align-items: center;
     align-content: center;
@@ -50,7 +48,7 @@ main {
     width: 16vw;
     height: 16vw;
     border: 1px solid black;
-    font-size: xxx-large;
+    font-size: 3em;
     color: white;
 }
 
@@ -65,14 +63,14 @@ footer {
     height: 36px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-flow: row nowrap;
 }
 
 .options-div button {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     height: 36px;
-    width: 88px;
+    width: 84px;
     border-radius: 10px;
     text-align: center;
     white-space: nowrap;
@@ -80,7 +78,7 @@ footer {
 
 #colorButton {
     border: 1px;
-    width: 74px;
+    width: 76px;
     height: 32px;
     border: 2px solid black;
     border-radius: 10px;
@@ -92,6 +90,7 @@ footer {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    justify-content: space-around;
     overflow: auto hidden;
     width: 100%;
     margin: 10px auto;
@@ -123,7 +122,7 @@ button {
     outline: none;
 }
 
-@media screen and (min-width:800px) {
+@media screen and (min-width:876px) {
     .blocks-container {
         width: 60vw;
         grid-template-columns: repeat(5, 10vw);
@@ -137,11 +136,29 @@ button {
     }
 
     .options-div button {
-        width: 20%;
+        width: 156px;
+    }
+
+    #colorButton {
+        width: 148px
     }
 
     .theme-pic {
-        width: 36px;
-        height: 36px;
+        width: 72px;
+        height: 72px;
+    }
+}
+
+@media screen and (min-width:1176px) {
+    .blocks-container {
+        width: 50vw;
+        grid-template-columns: repeat(5, 8vw);
+        grid-template-rows: repeat(4, 8vw);
+        gap: 1vw;
+    }
+
+    .block-button {
+        width: 8vw;
+        height: 8vw;
     }
 }
