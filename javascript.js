@@ -4,6 +4,8 @@ const themeList = ["Ben", "Cartoons", "DC", "Default", "Marvel", "Pokemon", "Pro
 const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColorName = () => localStorage.getItem("color") || "#1E90FF";
 const showThemeName = () => elementById("currentThemeName").innerText = getThemeName();
+const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
+const showTotalWinCount = () => elementById("totalWinCount").innerText = getTotalWinCount();
 let tileClickCount = 0,
     firstTileIndex = 0,
     secondTileIndex = 0,
@@ -22,7 +24,6 @@ function showThemeSelectors() {
 function changeTheme(theme) {
     localStorage.setItem("theme", theme);
     resetGame();
-    showThemeName();
 }
 
 function changeBlocksColor(colorPicker) {
@@ -58,8 +59,9 @@ function secondBlockClicked() {
         totalScore++;
         setPairedButtonsOff();
         if (totalScore == 10) {
-            alert("You Won (~ . ~)");
+            localStorage.setItem("winCount", getTotalWinCount() + 1)
             resetGame();
+            alert("You Won (~ . ~)");
         }
     }
 }
@@ -126,6 +128,8 @@ const resetGame = () => {
         secondTileIndex = 0,
         totalScore = 0;
     imageList = getThemeImageList(getThemeName());
+    showThemeName();
+    showTotalWinCount();
 }
 // initial function to run on page load
 const initiate = () => {
@@ -136,6 +140,7 @@ const initiate = () => {
     elementById("themeButton").setAttribute("onclick", "showThemeSelectors()");
     elementById("colorButton").setAttribute("value", getColorName());
     showThemeName();
+    showTotalWinCount();
 };
 
 window.onload = initiate;
