@@ -48,10 +48,10 @@ function makeBlocksPaired() {
 
 // task to perform on blocks paired 
 function pairFound() {
+    totalScore++;
     makeBlocksPaired();
     if (totalScore == 10) {
         localStorage.setItem("winCount", Number(getTotalWinCount()) + 1)
-        alert("You Won (~ . ~)");
         startNewGame();
     }
 }
