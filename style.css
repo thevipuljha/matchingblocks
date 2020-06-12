@@ -94,12 +94,13 @@ footer {
 .themes-div {
     border: 2px solid black;
     border-radius: 10px;
-    display: none;
+    display: flex;
     flex-flow: row nowrap;
     align-items: center;
     overflow: auto hidden;
     width: auto;
     margin: 10px auto;
+    visibility: hidden;
 }
 
 .themes-div div {

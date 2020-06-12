@@ -10,16 +10,16 @@ const addEvent = (element, event, task) => element.setAttribute(event, task);
 const getBlocks = () => elementsByclass("block-button");
 const setBackground = (element, image) => element.style.backgroundImage = image;
 const isPairFound = () => imageList[secondTileIndex] == imageList[firstTileIndex];
-const themeSelectorDisplay = (value) => elementById("themeSelector").style.display = value;
+const themeSelectorVisibility = (value) => elementById("themeSelector").style.visibility = value;
 let tileClickCount, firstTileIndex, secondTileIndex, totalScore;
 let imageList = getThemeImageList();
 
 // toggling theme selectors div on theme button click
 function toggleThemeSelectors() {
-    if (elementById("themeSelector").style.display == "flex") {
-        themeSelectorDisplay("none");
+    if (elementById("themeSelector").style.visibility == "visible") {
+        themeSelectorVisibility("hidden");
     } else {
-        themeSelectorDisplay("flex");
+        themeSelectorVisibility("visible");
     }
 }
 
