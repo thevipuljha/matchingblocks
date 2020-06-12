@@ -1,6 +1,6 @@
 const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) => document.getElementsByClassName(className);
-const themeList = ["Ben", "Cartoons", "DC", "Default", "Marvel", "Pokemon", "Programming", "TechBrands"];
+const themeList = ["Ben", "Cartoons", "Cricketers", "DC", "Default", "Marvel", "Pokemon", "Programming", "TechBrands"];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColor = () => localStorage.getItem("color") || "#1E90FF";
 const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
