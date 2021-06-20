@@ -1,73 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Match Blocks</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
     <script src="javascript.js"></script>
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-</head>
+    <link rel="shortcut icon" href="images/favicon.ico" />
 
-<body>
+    <link
+      rel="shortcut icon"
+      onclick="openShareWindow('')"
+      href="images/favicon.ico"
+    />
+    <meta
+      name="keywords"
+      content="matching,vipul,jha,vipul1142,blocks,puzzle"
+    />
+    <meta name="description" content="simple and fun hidden-pair puzzle game" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="url" content="cmyk(123%,123%,123%,123%)" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="cmyk(123%,123%,123%,123%)" />
+    <meta name="twitter:creator" content="@Vipul1142" />
+    <meta property="og:url" content="cmyk(123%,123%,123%,123%)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Matching Blocks" />
+    <meta
+      property="og:description"
+      content="simple and fun hidden-pair puzzle game"
+    />
+    <meta
+      property="og:image"
+      content="https://vipul1142.github.io/matchingblocks/images/thumb.jpeg"
+    />
+    <meta property="og:image:width" content="660" />
+    <meta property="og:image:height" content="190" />
+  </head>
+
+  <body>
     <header>
-        <h2>Match The Blocks</h2>
+      <h2>Match The Blocks</h2>
     </header>
     <!-- main starts -->
     <main>
-        <div class="game-info">
-            <label>Total Game Wins : <span id="totalWinCount">0</span></label>
-            <label>Current Theme : <span id="currentThemeName">.......</span></label>
-        </div>
-        <div class="blocks-container" id="blocksContainer"></div>
+      <div class="game-info">
+        <label>Total Game Wins : <span id="totalWinCount">0</span></label>
+        <label
+          >Current Theme : <span id="currentThemeName">.......</span></label
+        >
+      </div>
+      <div class="blocks-container" id="blocksContainer"></div>
     </main>
     <!-- main ends -->
     <footer>
-        <div class="options-div">
-            <button id="newGameButton">New Game</button>
-            <input type="color" name="blocks" id="colorButton">
-            <button id="themeButton">Theme</button>
+      <div class="options-div">
+        <button id="newGameButton">New Game</button>
+        <input type="color" name="blocks" id="colorButton" />
+        <button id="themeButton">Theme</button>
+      </div>
+      <div class="themes-div" id="themeSelector">
+        <div>
+          <button class="theme-pic" title="Ben 10" id="Ben"></button>
+          <label for="Ben">Ben 10</label>
         </div>
-        <div class="themes-div" id="themeSelector">
-            <div>
-                <button class="theme-pic" title="Ben 10" id="Ben"></button>
-                <label for="Ben">Ben 10</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Cartoons" id="Cartoons"></button>
-                <label for="Cartoons">Cartoons</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="DC Comics" id="DC"></button>
-                <label for="DC">DC Comics</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Default" id="Default"></button>
-                <label for="Default">Default</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Marvels" id="Marvel"></button>
-                <label for="Marvel">Marvels</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Pokemon" id="Pokemon"></button>
-                <label for="Pokemon">Pokemon</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Programming" id="Programming"></button>
-                <label for="Programming">Programming</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Tech Brands" id="TechBrands"></button>
-                <label for="TechBrands">Tech Brands</label>
-            </div>
-            <div>
-                <button class="theme-pic" title="Cricketers" id="Cricketers"></button>
-                <label for="TechBrands">Cricketers</label>
-            </div>
+        <div>
+          <button class="theme-pic" title="Cartoons" id="Cartoons"></button>
+          <label for="Cartoons">Cartoons</label>
         </div>
+        <div>
+          <button class="theme-pic" title="DC Comics" id="DC"></button>
+          <label for="DC">DC Comics</label>
+        </div>
+        <div>
+          <button class="theme-pic" title="Default" id="Default"></button>
+          <label for="Default">Default</label>
+        </div>
+        <div>
+          <button class="theme-pic" title="Marvels" id="Marvel"></button>
+          <label for="Marvel">Marvels</label>
+        </div>
+        <div>
+          <button class="theme-pic" title="Pokemon" id="Pokemon"></button>
+          <label for="Pokemon">Pokemon</label>
+        </div>
+        <div>
+          <button
+            class="theme-pic"
+            title="Programming"
+            id="Programming"
+          ></button>
+          <label for="Programming">Programming</label>
+        </div>
+        <div>
+          <button
+            class="theme-pic"
+            title="Tech Brands"
+            id="TechBrands"
+          ></button>
+          <label for="TechBrands">Tech Brands</label>
+        </div>
+        <div>
+          <button class="theme-pic" title="Cricketers" id="Cricketers"></button>
+          <label for="TechBrands">Cricketers</label>
+        </div>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>
