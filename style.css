@@ -1,179 +1,187 @@
+html {
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    overflow: hidden auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  max-width: 75%;
 }
-
 header {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  border: 1px solid red;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
-
-header h2 {
-    margin: 0 auto;
-    margin-top: 20px;
-    width: max-content;
-    color: crimson;
-    border-bottom: 3px solid crimson;
+#productHunt {
+  width: 200px;
+  height: 20px;
+}
+h2 {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: max-content;
+  color: crimson;
+  border-bottom: 3px solid crimson;
 }
 
 /* header end */
 main {
-    width: 100vw;
-    height: max-content;
-    margin: 20px auto;
+  width: 100vw;
+  height: max-content;
+  margin: 20px auto;
 }
 
 .game-info {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .blocks-container {
-    margin: 20px auto;
-    width: 90vw;
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(5, 16vw);
-    grid-template-rows: repeat(4, 16vw);
-    gap: 0.5vw;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+  margin: 20px auto;
+  width: 90vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 16vw);
+  grid-template-rows: repeat(4, 16vw);
+  gap: 0.5vw;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 .block-button {
-    user-select: none;
-    border-radius: 10px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 16vw;
-    height: 16vw;
-    border: 1px solid black;
-    font-size: 3em;
-    color: white;
+  user-select: none;
+  border-radius: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 16vw;
+  height: 16vw;
+  border: 1px solid black;
+  font-size: 3em;
+  color: white;
 }
 
 footer {
-    margin: 0 auto;
-    width: 90vw;
-    margin-top: 24px;
+  margin: 0 auto;
+  width: 90vw;
+  margin-top: 24px;
 }
 
 .options-div {
-    width: 100%;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-flow: row nowrap;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-flow: row nowrap;
 }
 
 .options-div button {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    height: 36px;
-    width: 84px;
-    border-radius: 10px;
-    text-align: center;
-    white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 36px;
+  width: 84px;
+  border-radius: 10px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 #colorButton {
-    border: 1px;
-    width: 76px;
-    height: 32px;
-    border: 2px solid black;
-    border-radius: 10px;
+  border: 1px;
+  width: 76px;
+  height: 32px;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .themes-div {
-    border: 2px solid black;
-    border-radius: 10px;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    overflow: auto hidden;
-    width: auto;
-    margin: 10px auto;
-    visibility: hidden;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  overflow: auto hidden;
+  width: auto;
+  margin: 10px auto;
+  visibility: hidden;
 }
 
 .themes-div div {
-    margin: 2%;
-    height: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8em;
-    white-space: nowrap;
+  margin: 2%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8em;
+  white-space: nowrap;
 }
 
 .theme-pic {
-    width: 36px;
-    height: 36px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: 0px;
-    margin-bottom: 6px;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0px;
+  margin-bottom: 6px;
 }
 
 input,
 button {
-    outline: none;
+  outline: none;
 }
 
-@media screen and (min-width:876px) {
-    .blocks-container {
-        width: 60vw;
-        grid-template-columns: repeat(5, 10vw);
-        grid-template-rows: repeat(4, 10vw);
-        gap: 1vw;
-    }
+@media screen and (min-width: 876px) {
+  .blocks-container {
+    width: 60vw;
+    grid-template-columns: repeat(5, 10vw);
+    grid-template-rows: repeat(4, 10vw);
+    gap: 1vw;
+  }
 
-    .block-button {
-        width: 10vw;
-        height: 10vw;
-    }
+  .block-button {
+    width: 10vw;
+    height: 10vw;
+  }
 
-    .options-div button {
-        width: 156px;
-    }
+  .options-div button {
+    width: 156px;
+  }
 
-    #colorButton {
-        width: 148px
-    }
+  #colorButton {
+    width: 148px;
+  }
 
-    .themes-div {
-        width: 80%;
-        justify-content: space-around;
-    }
+  .themes-div {
+    width: 80%;
+    justify-content: space-around;
+  }
 
-    .themes-div div {
-        margin: 2% 0px;
-    }
+  .themes-div div {
+    margin: 2% 0px;
+  }
 
-    .theme-pic {
-        width: 72px;
-        height: 72px;
-    }
+  .theme-pic {
+    width: 72px;
+    height: 72px;
+  }
 }
 
-@media screen and (min-width:1176px) {
-    .blocks-container {
-        width: 50vw;
-        grid-template-columns: repeat(5, 8vw);
-        grid-template-rows: repeat(4, 8vw);
-        gap: 1vw;
-    }
+@media screen and (min-width: 1176px) {
+  .blocks-container {
+    width: 50vw;
+    grid-template-columns: repeat(5, 8vw);
+    grid-template-rows: repeat(4, 8vw);
+    gap: 1vw;
+  }
 
-    .block-button {
-        width: 8vw;
-        height: 8vw;
-    }
+  .block-button {
+    width: 8vw;
+    height: 8vw;
+  }
 }
