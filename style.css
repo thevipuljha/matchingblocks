@@ -123,7 +123,7 @@ button:active {
   top                  : 50%;
   left                 : 50%;
   transform            : translate(-50%, -50%);
-  width                : 75vw;
+  width                : 80vw;
   height               : 50vh;
   background-color     : white;
   border-radius        : 14px;
@@ -138,7 +138,7 @@ button:active {
 #themeSelector div {
   display    : grid;
   place-items: center;
-  font-size  : 1em;
+  font-size  : small;
   white-space: nowrap;
 }
 
@@ -153,18 +153,17 @@ button:active {
 }
 
 .social-div-parent {
-  width     : 99%;
-  margin    : 0 auto;
-  margin-top: 30px;
-  display   : flex;
-  flex-flow : row nowrap;
-
+  width          : 99%;
+  margin         : 0 auto;
+  margin-top     : 30px;
+  display        : flex;
+  flex-flow      : row nowrap;
   align-items    : center;
   justify-content: space-around;
 }
 
 #productHunt>a>img {
-  width: 100%;
+  width: 80%;
 }
 
 .social-div {
@@ -173,8 +172,8 @@ button:active {
 }
 
 .social {
-  width : 48px;
-  height: 48px;
+  width : 36px;
+  height: 36px;
 }
 
 input,
@@ -182,12 +181,25 @@ button {
   outline: none;
 }
 
-@media screen and (min-width: 876px) {
-  .blocks-container {
-    width                : 60vw;
-    grid-template-columns: repeat(5, 10vw);
-    grid-template-rows   : repeat(4, 10vw);
-    gap                  : 1vw;
+@media screen and (min-width: 40em) {
+  heading {
+    position: relative;
+  }
+
+  .social-div-parent {
+    position       : absolute;
+    top            : -10px;
+    right          : -10px;
+    justify-content: space-between;
+  }
+
+  .social {
+    margin-right: 10px;
+  }
+
+  #blocksContainer {
+    width: 50%;
+    gap  : 10px;
   }
 
   .block-button {
@@ -195,45 +207,38 @@ button {
     height: 10vw;
   }
 
-  .options-div button {
-    width: 156px;
+  #themeSelector {
+    width : 60vw;
+    height: 60vh;
   }
 
-  #colorButton {
-    width: 148px;
-  }
-
-  .themes-div {
-    width          : 80%;
-    justify-content: space-around;
-  }
-
-  .themes-div div {
-    margin: 2% 0px;
+  #themeSelector div {
+    font-size: medium;
   }
 
   .theme-pic {
-    width : 72px;
-    height: 72px;
+    width : 76px;
+    height: 76px;
   }
 }
 
-@media screen and (min-width: 45em) {
-  body {
-    width           : auto;
-    margin          : none;
-    background-color: aqua;
+@media screen and (min-width: 70em) {
+  .social-div-parent {
+    top            : 0px;
+    right          : 0px;
+    justify-content: space-around;
   }
 
-  .blocks-container {
-    width                : 50vw;
-    grid-template-columns: repeat(5, 8vw);
-    grid-template-rows   : repeat(4, 8vw);
-    gap                  : 1vw;
+  #blocksContainer {
+    width: 40%;
   }
 
   .block-button {
-    width : 8vw;
-    height: 8vw;
+    width : 108px;
+    height: 108px;
+  }
+
+  .game-info {
+    padding-bottom: 20px;
   }
 }
