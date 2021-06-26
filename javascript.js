@@ -27,7 +27,7 @@ const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColor = () => localStorage.getItem("color") || "#1E90FF";
 const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
 const showThemeName = () =>
-  (elementById("currentThemeName").innerText = getThemeName());
+  (elementById("currentThemeName").innerText = titleList[getThemeName()]);
 const showTotalWinCount = () =>
   (elementById("totalWinCount").innerText = getTotalWinCount());
 const addEvent = (element, event, task) => element.setAttribute(event, task);
@@ -57,7 +57,7 @@ function toggleThemeSelectors() {
 
 //  changing theme to selected theme
 function changeTheme(theme) {
-  localStorage.setItem("theme", theme);
+  localStorage.setItem("theme", themeList.indexOf(theme));
   removePopup();
   startNewGame();
 }
@@ -123,7 +123,7 @@ function blockClicked(clickedIndex) {
 
 // creating shuffled list of image paths according to theme
 function getThemeImageList() {
-  const themeName = getThemeName();
+  const themeName = themeList[getThemeName()];
   let imageList = [];
   for (let index = 0; index < 10; index++) {
     imageList.push(`url(images/${themeName}/image${index}.png)`);
