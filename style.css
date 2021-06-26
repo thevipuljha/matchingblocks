@@ -81,15 +81,9 @@ main {
   color            : white;
 }
 
-footer {
-  margin    : 0 auto;
-  width     : 90vw;
-  margin-top: 24px;
-}
-
 .options-div {
   width          : 100%;
-  height         : 36px;
+  margin-top     : 40px;
   display        : flex;
   align-items    : center;
   justify-content: space-evenly;
@@ -99,19 +93,28 @@ footer {
 .options-div button {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  height       : 36px;
-  width        : 84px;
-  border-radius: 10px;
-  text-align   : center;
-  white-space  : nowrap;
+  height          : 44px;
+  width           : 100px;
+  border-radius   : 6px;
+  text-align      : center;
+  white-space     : nowrap;
+  color           : white;
+  font-size       : medium;
+  background-color: crimson;
+  border          : none;
+}
+
+svg:active,
+button:active {
+  transform: scale(1.1);
 }
 
 #colorButton {
-  border       : 1px;
-  width        : 76px;
-  height       : 32px;
-  border       : 2px solid black;
-  border-radius: 10px;
+  width           : 100px;
+  height          : 40px;
+  border          : 2px solid crimson;
+  border-radius   : 6px;
+  background-color: white;
 }
 
 .themes-div {
