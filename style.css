@@ -117,36 +117,60 @@ button:active {
   background-color: white;
 }
 
-.themes-div {
-  border       : 2px solid black;
-  border-radius: 10px;
-  display      : flex;
-  flex-flow    : row nowrap;
-  align-items  : center;
-  overflow     : auto hidden;
-  width        : auto;
-  margin       : 10px auto;
-  visibility   : hidden;
+.popup-container {
+  width           : 100vw;
+  height          : 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index         : 9999;
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  overflow        : hidden;
+  opacity         : 0;
+  visibility      : hidden;
+  transform       : scale(1.1);
+  transition      : visibility 0s ease 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.themes-div div {
-  margin         : 2%;
-  height         : 100%;
-  display        : flex;
-  flex-flow      : column nowrap;
-  align-items    : center;
-  justify-content: space-between;
-  font-size      : 0.8em;
-  white-space    : nowrap;
+.show-popup {
+  opacity   : 1;
+  visibility: visible;
+  transform : scale(1.0);
+  transition: visibility 0s ease 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+#themeSelector {
+  position             : absolute;
+  top                  : 50%;
+  left                 : 50%;
+  transform            : translate(-50%, -50%);
+  width                : 75vw;
+  height               : 50vh;
+  background-color     : white;
+  border-radius        : 14px;
+  box-shadow           : 2px 2px 5px rgba(0, 0, 0, 0.8);
+  display              : grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows   : repeat(3, 1fr);
+  gap                  : 8px;
+  place-items          : center;
+}
+
+#themeSelector div {
+  display    : grid;
+  place-items: center;
+  font-size  : 1em;
+  white-space: nowrap;
 }
 
 .theme-pic {
-  width            : 36px;
-  height           : 36px;
+  width            : 64px;
+  height           : 64px;
   background-size  : contain;
   background-repeat: no-repeat;
-  border           : 0px;
-  margin-bottom    : 6px;
+  border           : 2px solid crimson;
+  border-radius    : 5px;
+  margin-bottom    : 5px;
 }
 
 input,

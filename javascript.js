@@ -25,23 +25,20 @@ const setBackground = (element, image) =>
   (element.style.backgroundImage = image);
 const isPairFound = () =>
   imageList[secondTileIndex] == imageList[firstTileIndex];
-const themeSelectorVisibility = (value) =>
-  (elementById("themeSelector").style.visibility = value);
 let tileClickCount, firstTileIndex, secondTileIndex, totalScore;
 let imageList = getThemeImageList();
+const removePopup = () => 
+elementsByclass("popup-container")[0].classList.remove("show-popup");
 
 // toggling theme selectors div on theme button click
 function toggleThemeSelectors() {
-  if (elementById("themeSelector").style.visibility == "visible") {
-    themeSelectorVisibility("hidden");
-  } else {
-    themeSelectorVisibility("visible");
-  }
+  elementsByclass("popup-container")[0].classList.add("show-popup");
 }
 
 //  changing theme to selected theme
 function changeTheme(theme) {
   localStorage.setItem("theme", theme);
+  removePopup();
   startNewGame();
 }
 // changing blocks color according to selected color
@@ -148,6 +145,10 @@ function addEventListeners() {
     "changeBlocksColor(this.value)"
   );
   addEvent(elementById("themeButton"), "onclick", "toggleThemeSelectors()");
+  window.onclick = function (event) {
+    if (event.target == elementsByclass("popup-container")[0])
+          removePopup()
+  }
 }
 // adding pictures and event handlers on themeselector buttons
 function setThemeSelectors() {
