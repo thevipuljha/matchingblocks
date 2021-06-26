@@ -109,6 +109,8 @@ button:active {
   visibility      : hidden;
   transform       : scale(1.1);
   transition      : visibility 0s ease 0.25s, opacity 0.25s 0s, transform 0.25s;
+  display         : grid;
+  place-items     : center;
 }
 
 .show-popup {
@@ -119,10 +121,6 @@ button:active {
 }
 
 #themeSelector {
-  position             : absolute;
-  top                  : 50%;
-  left                 : 50%;
-  transform            : translate(-50%, -50%);
   width                : 80vw;
   height               : 50vh;
   background-color     : white;
@@ -179,6 +177,18 @@ button:active {
 input,
 button {
   outline: none;
+}
+
+#toast {
+  width           : 30vw;
+  height          : 30vh;
+  background-color: crimson;
+  border-radius   : 10px;
+  display         : grid;
+  place-items     : center;
+  text-align      : center;
+  color           : white;
+  font-size       : large;
 }
 
 @media screen and (min-width: 40em) {

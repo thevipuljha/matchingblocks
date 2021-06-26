@@ -50,6 +50,13 @@ const createElement = (tag, id, classname, task, bgColor) => {
   return newElement;
 };
 
+const showToast = (message) => {
+  elementsByclass("popup-container")[1].classList.toggle("show-popup");
+  if (message) elementById("toast").innerText = message;
+};
+const hideToast = () =>
+  elementsByclass("popup-container")[1].classList.remove("show-popup");
+
 // toggling theme selectors div on theme button click
 function toggleThemeSelectors() {
   elementsByclass("popup-container")[0].classList.add("show-popup");
@@ -77,8 +84,7 @@ function makeBlocksPaired() {
   blocks[secondTileIndex].disabled = true;
   blocks[firstTileIndex].innerHTML = "&checkmark;";
   blocks[secondTileIndex].innerHTML = "&checkmark;";
-  blocks[firstTileIndex].style.backgroundImage = "none";
-  blocks[secondTileIndex].style.backgroundImage = "none";
+  setSelectedButtonImagesOff();
 }
 
 // task to perform on blocks paired
@@ -87,7 +93,11 @@ function pairFound() {
   makeBlocksPaired();
   if (totalScore == 10) {
     localStorage.setItem("winCount", Number(getTotalWinCount()) + 1);
-    startNewGame();
+    showToast("Yay! You Won");
+    setTimeout(() => {
+      hideToast();
+      startNewGame();
+    }, 2000);
   }
 }
 
@@ -159,6 +169,7 @@ const startNewGame = () => {
   showThemeName();
   showTotalWinCount();
   elementById("colorButton").value = getColor();
+  showToast("Welcome! to Matching Blocks");
 };
 
 // adding eventListeners to html elements
@@ -172,6 +183,7 @@ function addEventListeners() {
   addEvent(elementById("themeButton"), "onclick", "toggleThemeSelectors()");
   window.onclick = function (event) {
     if (event.target == elementsByclass("popup-container")[0]) removePopup();
+    if (event.target == elementsByclass("popup-container")[1]) hideToast();
   };
 }
 // adding pictures and event handlers on themeselector buttons
