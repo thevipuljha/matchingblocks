@@ -30,7 +30,7 @@ main {
   display        : flex;
   justify-content: space-evenly;
   align-items    : center;
-  padding-bottom : 40px;
+  padding-bottom : 30px;
 }
 
 .blocks-container {
@@ -180,7 +180,7 @@ button {
 }
 
 #toast {
-  width           : 30vw;
+  width           : 60vw;
   height          : 30vh;
   background-color: crimson;
   border-radius   : 10px;
@@ -194,6 +194,11 @@ button {
 @media screen and (min-width: 40em) {
   heading {
     position: relative;
+  }
+
+  #toast {
+    width : 30vw;
+    height: 30vh;
   }
 
   .social-div-parent {

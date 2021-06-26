@@ -23,20 +23,29 @@ const titleList = [
   "Programming",
   "Tech Brands",
 ];
-const getThemeName = () => localStorage.getItem("theme") || "Default";
+const getThemeName = () => localStorage.getItem("theme") || 4;
 const getColor = () => localStorage.getItem("color") || "#1E90FF";
+const getBestClickCount = () => localStorage.getItem("bestClick") || "NA";
 const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
 const showThemeName = () =>
   (elementById("currentThemeName").innerText = titleList[getThemeName()]);
 const showTotalWinCount = () =>
   (elementById("totalWinCount").innerText = getTotalWinCount());
+const showBestClickCount = () =>
+  (elementById("bestClick").innerText = getBestClickCount());
+const showClickCount = () =>
+  (elementById("currentClicks").innerText = totalClickCount);
 const addEvent = (element, event, task) => element.setAttribute(event, task);
 const getBlocks = () => elementsByclass("block-button");
 const setBackground = (element, image) =>
   (element.style.backgroundImage = image);
 const isPairFound = () =>
   imageList[secondTileIndex] == imageList[firstTileIndex];
-let tileClickCount, firstTileIndex, secondTileIndex, totalScore;
+let tileClickCount,
+  firstTileIndex,
+  secondTileIndex,
+  totalScore,
+  totalClickCount;
 let imageList = getThemeImageList();
 const removePopup = () =>
   elementsByclass("popup-container")[0].classList.remove("show-popup");
@@ -93,11 +102,16 @@ function pairFound() {
   makeBlocksPaired();
   if (totalScore == 10) {
     localStorage.setItem("winCount", Number(getTotalWinCount()) + 1);
-    showToast("Yay! You Won");
+    showToast("Yay! You Won in " + totalClickCount + " moves");
+    if (
+      getBestClickCount() > tileClickCount ||
+      !localStorage.getItem("bestClick")
+    )
+      localStorage.setItem("bestClick", totalClickCount);
     setTimeout(() => {
       hideToast();
       startNewGame();
-    }, 2000);
+    }, 3000);
   }
 }
 
@@ -133,6 +147,8 @@ function blockClicked(clickedIndex) {
   if (tileClickCount == 1) {
     setTimeout(() => setSelectedButtonImagesOff(), 200);
   }
+  totalClickCount++;
+  showClickCount();
   tileClickCount = (tileClickCount + 1) % 2;
 }
 
@@ -165,9 +181,12 @@ const startNewGame = () => {
   firstTileIndex = 0;
   secondTileIndex = 0;
   totalScore = 0;
+  totalClickCount = 0;
   imageList = getThemeImageList();
   showThemeName();
   showTotalWinCount();
+  showBestClickCount();
+  showClickCount();
   elementById("colorButton").value = getColor();
   showToast("Welcome! to Matching Blocks");
 };
