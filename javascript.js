@@ -77,6 +77,8 @@ function makeBlocksPaired() {
   blocks[secondTileIndex].disabled = true;
   blocks[firstTileIndex].innerHTML = "&checkmark;";
   blocks[secondTileIndex].innerHTML = "&checkmark;";
+  blocks[firstTileIndex].style.backgroundImage = "none";
+  blocks[secondTileIndex].style.backgroundImage = "none";
 }
 
 // task to perform on blocks paired
@@ -117,6 +119,9 @@ function blockClicked(clickedIndex) {
   setButtonImagesOnClick();
   if (tileClickCount == 1 && isPairFound()) {
     pairFound();
+  }
+  if (tileClickCount == 1) {
+    setTimeout(() => setSelectedButtonImagesOff(), 200);
   }
   tileClickCount = (tileClickCount + 1) % 2;
 }
