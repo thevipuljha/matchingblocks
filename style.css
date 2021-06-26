@@ -5,45 +5,24 @@ html {
 }
 
 header {
-  width                : 99%;
-  margin               : 0 auto;
-  padding-top          : 20px;
-  display              : grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items          : center;
-  justify-content      : space-between;
-  justify-items        : center;
+  width      : 99%;
+  margin     : 0 auto;
+  display    : grid;
+  place-items: center;
+  text-align : center;
 }
 
-/* header>*{
-  border: 1px solid red;
-} */
-#productHunt>a>img {
-  width: 100%;
-}
-
-#title>h2 {
+header h2 {
   width        : max-content;
   color        : crimson;
   border-bottom: 3px solid crimson;
   white-space  : nowrap;
 }
 
-.social-div {
-  display  : flex;
-  flex-flow: row nowrap;
-
-}
-
-.social {
-  width : 32px;
-  height: 32px;
-}
-
 /* header end */
 main {
   width      : 100%;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .game-info {
@@ -171,6 +150,31 @@ button:active {
   border           : 2px solid crimson;
   border-radius    : 5px;
   margin-bottom    : 5px;
+}
+
+.social-div-parent {
+  width     : 99%;
+  margin    : 0 auto;
+  margin-top: 30px;
+  display   : flex;
+  flex-flow : row nowrap;
+
+  align-items    : center;
+  justify-content: space-around;
+}
+
+#productHunt>a>img {
+  width: 100%;
+}
+
+.social-div {
+  display  : flex;
+  flex-flow: row nowrap;
+}
+
+.social {
+  width : 48px;
+  height: 48px;
 }
 
 input,
