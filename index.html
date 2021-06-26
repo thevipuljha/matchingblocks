@@ -38,17 +38,17 @@
 
   <body>
     <header>
-        <div id="productHunt">
-          <!-- <a
-            href="https://www.producthunt.com/posts/matching-blocks?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-matching-blocks"
-            target="_blank"
-            ><img
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=300854&theme=light"
-              alt="Matching Blocks - A game for matching hidden blocks | Product Hunt"
-          /></a> -->
-        </div>
+      <div id="productHunt">
+        <a
+          href="https://www.producthunt.com/posts/matching-blocks?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-matching-blocks"
+          target="_blank"
+          ><img
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=300854&theme=light"
+            alt="Matching Blocks - A game for matching hidden blocks | Product Hunt"
+        /></a>
+      </div>
       <div id="title">
-        <h2 >Matching Blocks</h2>
+        <h2>Matching Blocks</h2>
       </div>
       <div id="social-div">
         <a href="https://twitter.com/Vipul__Jha"
@@ -78,10 +78,11 @@
     <!-- main starts -->
     <main>
       <div class="game-info">
-        <label>Total Wins : <span id="totalWinCount">0</span></label>|
+        <label>Total Wins : <span id="totalWinCount">0</span></label
+        >|
         <label>Theme : <span id="currentThemeName">.</span></label>
       </div>
-      <div class="blocks-container" ><div id="blocksContainer"></div></div>
+      <div class="blocks-container"><div id="blocksContainer"></div></div>
     </main>
     <!-- main ends -->
     <footer>
@@ -92,52 +93,7 @@
       </div>
 
       <div class="popup-container">
-        <div id="themeSelector">
-          <div>
-            <button class="theme-pic" title="Ben 10" id="Ben"></button>
-            <label for="Ben">Ben 10</label>
-          </div>
-          <div>
-            <button class="theme-pic" title="Cartoons" id="Cartoons"></button>
-            <label for="Cartoons">Cartoons</label>
-          </div>
-          <div>
-            <button class="theme-pic" title="DC Comics" id="DC"></button>
-            <label for="DC">DC Comics</label>
-          </div>
-          <div>
-            <button class="theme-pic" title="Default" id="Default"></button>
-            <label for="Default">Default</label>
-          </div>
-          <div>
-            <button class="theme-pic" title="Marvels" id="Marvel"></button>
-            <label for="Marvel">Marvels</label>
-          </div>
-          <div>
-            <button class="theme-pic" title="Pokemon" id="Pokemon"></button>
-            <label for="Pokemon">Pokemon</label>
-          </div>
-          <div>
-            <button
-              class="theme-pic"
-              title="Programming"
-              id="Programming"
-            ></button>
-            <label for="Programming">Programming</label>
-          </div>
-          <div>
-            <button
-              class="theme-pic"
-              title="Tech Brands"
-              id="TechBrands"
-            ></button>
-            <label for="TechBrands">Tech Brands</label>
-          </div>
-          <div>
-            <button class="theme-pic" title="Cricketers" id="Cricketers"></button>
-            <label for="TechBrands">Cricketers</label>
-          </div>
-        </div>
+        <div id="themeSelector"></div>
       </div>
     </footer>
   </body>

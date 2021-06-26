@@ -12,6 +12,17 @@ const themeList = [
   "Programming",
   "TechBrands",
 ];
+const titleList = [
+  "Ben 10",
+  "Cartoons",
+  "Cricketers",
+  "DC Comics",
+  "Default",
+  "Marvels",
+  "Pokemon",
+  "Programming",
+  "Tech Brands",
+];
 const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColor = () => localStorage.getItem("color") || "#1E90FF";
 const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
@@ -27,8 +38,17 @@ const isPairFound = () =>
   imageList[secondTileIndex] == imageList[firstTileIndex];
 let tileClickCount, firstTileIndex, secondTileIndex, totalScore;
 let imageList = getThemeImageList();
-const removePopup = () => 
-elementsByclass("popup-container")[0].classList.remove("show-popup");
+const removePopup = () =>
+  elementsByclass("popup-container")[0].classList.remove("show-popup");
+
+const createElement = (tag, id, classname, task, bgColor) => {
+  const newElement = document.createElement(tag);
+  if (id) newElement.id = id;
+  if (classname) newElement.className = classname;
+  if (task) newElement.setAttribute("onclick", task);
+  if (bgColor) newElement.style.backgroundColor = bgColor;
+  return newElement;
+};
 
 // toggling theme selectors div on theme button click
 function toggleThemeSelectors() {
@@ -146,17 +166,29 @@ function addEventListeners() {
   );
   addEvent(elementById("themeButton"), "onclick", "toggleThemeSelectors()");
   window.onclick = function (event) {
-    if (event.target == elementsByclass("popup-container")[0])
-          removePopup()
-  }
+    if (event.target == elementsByclass("popup-container")[0]) removePopup();
+  };
 }
 // adding pictures and event handlers on themeselector buttons
 function setThemeSelectors() {
-  const themeButtons = elementsByclass("theme-pic");
-  for (let index = 0; index < themeButtons.length; index++) {
-    const themeButton = themeButtons[index];
-    themeButton.style.backgroundImage = `url(images/${themeButton.id}/image0.png)`;
-    themeButton.setAttribute("onclick", "changeTheme(this.title)");
+  const themeSelector = elementById("themeSelector");
+  for (let index = 0; index < themeList.length; index++) {
+    let newDiv = createElement("div");
+    let newButton = createElement(
+      "button",
+      themeList[index],
+      "theme-pic",
+      `changeTheme("${themeList[index]}")`,
+      0
+    );
+    newButton.style.backgroundImage = `url(images/${newButton.id}/image0.png)`;
+    newButton.title = titleList[index];
+    let newLable = document.createElement("label");
+    newLable.setAttribute("for", themeList[index]);
+    newLable.innerHTML = titleList[index];
+    newDiv.appendChild(newButton);
+    newDiv.appendChild(newLable);
+    themeSelector.appendChild(newDiv);
   }
 }
 
@@ -164,10 +196,13 @@ function setThemeSelectors() {
 const createBlocks = () => {
   const blocksContainer = elementById("blocksContainer");
   for (let index = 0; index < 20; index++) {
-    let newBlock = document.createElement("button");
-    newBlock.className = "block-button";
-    newBlock.setAttribute("onclick", `blockClicked(${index})`);
-    newBlock.style.backgroundColor = getColor();
+    let newBlock = createElement(
+      "button",
+      0,
+      "block-button",
+      `blockClicked(${index})`,
+      getColor()
+    );
     blocksContainer.appendChild(newBlock);
   }
 };
