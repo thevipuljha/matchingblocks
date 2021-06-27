@@ -42,14 +42,25 @@
     </header>
     <!-- main starts -->
     <main>
-      <div class="game-info">
-        <label>Total Wins : <span id="totalWinCount">0</span></label
-        >|
-        <label>Theme : <span id="currentThemeName">.</span></label>
-      </div>
-      <div class="game-info">
-        <label>Lowest Clicks : <span id="bestClick"></span></label>
-        <label>Clicks : <span id="currentClicks"></span></label>
+      <div class="info-container">
+        <table class="game-info">
+          <tr>
+            <td>TOTAL WINS</td>
+            <td>-</td>
+            <td id="totalWinCount">3</td>
+            <td>THEME</td>
+            <td>-</td>
+            <td id="currentThemeName">Marvels</td>
+          </tr>
+          <tr>
+            <td>BEST WIN</td>
+            <td>-</td>
+            <td id="bestClick">15</td>
+            <td>FLIPS</td>
+            <td>-</td>
+            <td id="currentClicks">0</td>
+          </tr>
+        </table>
       </div>
       <div class="blocks-container"><div id="blocksContainer"></div></div>
     </main>

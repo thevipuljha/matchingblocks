@@ -21,19 +21,46 @@ header h2 {
 
 /* header end */
 main {
-  width      : 100%;
-  padding-top: 20px;
+  width: 100%;
+}
+
+.info-container {
+  margin     : 0 auto;
+  display    : grid;
+  place-items: center;
+  width      : 90vw;
 }
 
 .game-info {
+  table-layout   : fixed;
+  border-collapse: collapse;
+  border-radius  : 10px;
   width          : 100%;
-  display        : flex;
-  justify-content: space-evenly;
-  align-items    : center;
-  padding-bottom : 30px;
+  border         : 2px solid crimson;
+}
+
+.game-info td {
+  height       : 2em;
+  text-align   : center;
+  border-bottom: 2px solid crimson;
+}
+
+.game-info td:nth-child(2),
+.game-info td:nth-child(5) {
+  width: 12px;
+}
+
+.game-info td:nth-child(3) {
+  border-right: 2px solid crimson;
+  width       : 10%;
+}
+
+.game-info td:nth-child(4) {
+  width: 20%;
 }
 
 .blocks-container {
+  margin-top     : 30px;
   width          : 100%;
   display        : flex;
   align-items    : center;
@@ -196,6 +223,10 @@ button {
     position: relative;
   }
 
+  .info-container {
+    width: 70vw;
+  }
+
   #toast {
     width : 30vw;
     height: 30vh;
@@ -244,6 +275,10 @@ button {
     justify-content: space-around;
   }
 
+  .info-container {
+    width: 55vw;
+  }
+
   #blocksContainer {
     width: 40%;
   }
@@ -251,9 +286,5 @@ button {
   .block-button {
     width : 108px;
     height: 108px;
-  }
-
-  .game-info {
-    padding-bottom: 20px;
   }
 }
