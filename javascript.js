@@ -189,6 +189,9 @@ const startNewGame = () => {
   showClickCount();
   elementById("colorButton").value = getColor();
   showToast("Welcome! to Matching Blocks");
+  setTimeout(() => {
+    hideToast();
+  }, 2500);
 };
 
 // adding eventListeners to html elements
