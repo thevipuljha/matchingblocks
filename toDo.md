@@ -1,0 +1,5 @@
+- [ ] box shadow on cards
+- [ ] flip animation
+- [ ] images loading issue(not fast enough)
+- [ ] refactoring code
+- [ ] opacity cahnge on pair found
