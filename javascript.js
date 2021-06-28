@@ -91,8 +91,8 @@ function makeBlocksPaired() {
   const blocks = getBlocks();
   blocks[firstTileIndex].disabled = true;
   blocks[secondTileIndex].disabled = true;
-  blocks[firstTileIndex].innerHTML = "&checkmark;";
-  blocks[secondTileIndex].innerHTML = "&checkmark;";
+  blocks[firstTileIndex].style.opacity = 0;
+  blocks[secondTileIndex].style.opacity = 0;
   setSelectedButtonImagesOff();
 }
 
@@ -176,6 +176,7 @@ const startNewGame = () => {
     blocks[index].disabled = false;
     setBackground(blocks[index], "none");
     blocks[index].innerText = "";
+    blocks[index].style.opacity = 1;
   }
   tileClickCount = 0;
   firstTileIndex = 0;

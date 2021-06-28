@@ -21,11 +21,13 @@ header h2 {
 
 /* header end */
 main {
-  width: 100%;
+  width      : 100%;
+  display    : flex;
+  flex-flow  : column nowrap;
+  align-items: center;
 }
 
 .info-container {
-  margin     : 0 auto;
   display    : grid;
   place-items: center;
   width      : 90vw;
@@ -60,14 +62,17 @@ main {
 }
 
 .blocks-container {
-  margin-top     : 30px;
-  width          : 100%;
-  display        : flex;
-  align-items    : center;
-  justify-content: center;
+  margin-top        : 30px;
+  padding           : 1.5em;
+  -moz-box-shadow   : 0px 0px 10px 1px #888888;
+  -webkit-box-shadow: 0px 0px 10px 1px #888888;
+  box-shadow        : 0px 0px 10px 1px #888888;
+  border-radius     : 8px;
+  width             : max-content;
 }
 
 #blocksContainer {
+  width                : 100%;
   display              : grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows   : repeat(4, 1fr);
@@ -76,15 +81,19 @@ main {
 }
 
 .block-button {
-  user-select      : none;
-  border-radius    : 5px;
-  background-size  : cover;
-  background-repeat: no-repeat;
-  width            : 16vw;
-  height           : 16vw;
-  border           : none;
-  font-size        : 3em;
-  color            : white;
+  user-select       : none;
+  border-radius     : 5px;
+  background-size   : cover;
+  background-repeat : no-repeat;
+  width             : 16vw;
+  height            : 16vw;
+  border            : none;
+  font-size         : 3em;
+  color             : white;
+  -moz-box-shadow   : 0px 0px 5px 2px #aaa;
+  -webkit-box-shadow: 0px 0px 5px 2px #aaa;
+  box-shadow        : 0px 0px 5px 2px #aaa;
+  transition        : opacity 0.25s 0s, transform 0.5s;
 }
 
 .options-div {
