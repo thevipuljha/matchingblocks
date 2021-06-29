@@ -1,17 +1,6 @@
 const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) =>
   document.getElementsByClassName(className);
-const themeList = [
-  "Ben",
-  "Cartoons",
-  "Cricketers",
-  "DC",
-  "Default",
-  "Marvel",
-  "Pokemon",
-  "Programming",
-  "TechBrands",
-];
 const titleList = [
   "Ben 10",
   "Cartoons",
@@ -23,12 +12,16 @@ const titleList = [
   "Programming",
   "Tech Brands",
 ];
-const getThemeName = () => localStorage.getItem("theme") || 4;
+const getThemeId = (index) => titleList[index].split(" ").join("-");
+
+const getThemeName = () => localStorage.getItem("theme") || "Default";
 const getColor = () => localStorage.getItem("color") || "#1E90FF";
 const getBestClickCount = () => localStorage.getItem("bestClick") || "NA";
 const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
 const showThemeName = () =>
-  (elementById("currentThemeName").innerText = titleList[getThemeName()]);
+  (elementById("currentThemeName").innerText = getThemeName()
+    .split("-")
+    .join(" "));
 const showTotalWinCount = () =>
   (elementById("totalWinCount").innerText = getTotalWinCount());
 const showBestClickCount = () =>
@@ -73,7 +66,7 @@ function toggleThemeSelectors() {
 
 //  changing theme to selected theme
 function changeTheme(theme) {
-  localStorage.setItem("theme", themeList.indexOf(theme));
+  localStorage.setItem("theme", theme);
   removePopup();
   startNewGame();
 }
@@ -154,7 +147,7 @@ function blockClicked(clickedIndex) {
 
 // creating shuffled list of image paths according to theme
 function getThemeImageList() {
-  const themeName = themeList[getThemeName()];
+  const themeName = getThemeName();
   let imageList = [];
   for (let index = 0; index < 10; index++) {
     imageList.push(`url(images/${themeName}/image${index}.png)`);
@@ -212,19 +205,19 @@ function addEventListeners() {
 // adding pictures and event handlers on themeselector buttons
 function setThemeSelectors() {
   const themeSelector = elementById("themeSelector");
-  for (let index = 0; index < themeList.length; index++) {
+  for (let index = 0; index < titleList.length; index++) {
     let newDiv = createElement("div");
+    const themeId = getThemeId(index);
     let newButton = createElement(
       "button",
-      themeList[index],
+      themeId,
       "theme-pic",
-      `changeTheme("${themeList[index]}")`,
+      `changeTheme("${themeId}")`,
       0
     );
     newButton.style.backgroundImage = `url(images/${newButton.id}/image0.png)`;
-    newButton.title = titleList[index];
     let newLable = document.createElement("label");
-    newLable.setAttribute("for", themeList[index]);
+    newLable.setAttribute("for", themeId);
     newLable.innerHTML = titleList[index];
     newDiv.appendChild(newButton);
     newDiv.appendChild(newLable);
