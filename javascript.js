@@ -1,7 +1,8 @@
 const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) =>
   document.getElementsByClassName(className);
-const titleList = [
+const addEvent = (element, event, task) => element.setAttribute(event, task);
+const themeList = [
   "Ben 10",
   "Cartoons",
   "Cricketers",
@@ -12,23 +13,22 @@ const titleList = [
   "Programming",
   "Tech Brands",
 ];
-const getThemeId = (index) => titleList[index].split(" ").join("-");
-
+const getThemeId = (index) => themeList[index].split(" ").join("-");
 const getThemeName = () => localStorage.getItem("theme") || "Default";
-const getColor = () => localStorage.getItem("color") || "#1E90FF";
-const getBestClickCount = () => localStorage.getItem("bestClick") || "NA";
-const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
 const showThemeName = () =>
   (elementById("currentThemeName").innerText = getThemeName()
     .split("-")
     .join(" "));
+const getColor = () => localStorage.getItem("color") || "#1E90FF";
+
+const getBestClickCount = () => localStorage.getItem("bestClick") || "NA";
+const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
 const showTotalWinCount = () =>
   (elementById("totalWinCount").innerText = getTotalWinCount());
 const showBestClickCount = () =>
   (elementById("bestClick").innerText = getBestClickCount());
 const showClickCount = () =>
   (elementById("currentClicks").innerText = totalClickCount);
-const addEvent = (element, event, task) => element.setAttribute(event, task);
 const getBlocks = () => elementsByclass("block-button");
 const setBackground = (element, image) =>
   (element.style.backgroundImage = image);
@@ -39,7 +39,8 @@ let tileClickCount,
   secondTileIndex,
   totalScore,
   totalClickCount;
-let imageList = getThemeImageList();
+let imageList = [];
+
 const removePopup = () =>
   elementsByclass("popup-container")[0].classList.remove("show-popup");
 
@@ -82,10 +83,8 @@ function changeBlocksColor(selectedColor) {
 // making paired blocks different from different from others
 function makeBlocksPaired() {
   const blocks = getBlocks();
-  blocks[firstTileIndex].disabled = true;
-  blocks[secondTileIndex].disabled = true;
-  blocks[firstTileIndex].style.opacity = 0;
-  blocks[secondTileIndex].style.opacity = 0;
+  blocks[firstTileIndex].style.visibility = "hidden";
+  blocks[secondTileIndex].style.visibility = "hidden";
   setSelectedButtonImagesOff();
 }
 
@@ -149,10 +148,10 @@ function blockClicked(clickedIndex) {
 function getThemeImageList() {
   const themeName = getThemeName();
   let imageList = [];
-  for (let index = 0; index < 10; index++) {
-    imageList.push(`url(images/${themeName}/image${index}.png)`);
-    imageList.push(`url(images/${themeName}/image${index}.png)`);
-  }
+  for (let index = 0; index < 10; index++)
+    for (let i = 0; i < 2; ++i)
+      imageList.push(`url(images/${themeName}/image${index}.png)`);
+
   for (let i = 19; i > 0; i--) {
     const j = Math.floor(Math.random() * i);
     const temp = imageList[i];
@@ -169,7 +168,7 @@ const startNewGame = () => {
     blocks[index].disabled = false;
     setBackground(blocks[index], "none");
     blocks[index].innerText = "";
-    blocks[index].style.opacity = 1;
+    blocks[index].style.visibility = "visible";
   }
   tileClickCount = 0;
   firstTileIndex = 0;
@@ -205,7 +204,7 @@ function addEventListeners() {
 // adding pictures and event handlers on themeselector buttons
 function setThemeSelectors() {
   const themeSelector = elementById("themeSelector");
-  for (let index = 0; index < titleList.length; index++) {
+  for (let index = 0; index < themeList.length; index++) {
     let newDiv = createElement("div");
     const themeId = getThemeId(index);
     let newButton = createElement(
@@ -218,7 +217,7 @@ function setThemeSelectors() {
     newButton.style.backgroundImage = `url(images/${newButton.id}/image0.png)`;
     let newLable = document.createElement("label");
     newLable.setAttribute("for", themeId);
-    newLable.innerHTML = titleList[index];
+    newLable.innerHTML = themeList[index];
     newDiv.appendChild(newButton);
     newDiv.appendChild(newLable);
     themeSelector.appendChild(newDiv);
