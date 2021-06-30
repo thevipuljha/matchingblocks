@@ -1,7 +1,10 @@
 const elementById = (id) => document.getElementById(id);
 const elementsByclass = (className) =>
   document.getElementsByClassName(className);
+const getLocalData = (key) => localStorage.getItem(key);
+const setLocalData = (key, value) => localStorage.setItem(key, value);
 const addEvent = (element, event, task) => element.setAttribute(event, task);
+
 const themeList = [
   "Ben 10",
   "Cartoons",
@@ -13,16 +16,17 @@ const themeList = [
   "Programming",
   "Tech Brands",
 ];
-const getThemeId = (index) => themeList[index].split(" ").join("-");
-const getThemeName = () => localStorage.getItem("theme") || "Default";
+const getCurrentColor = () => getLocalData("color") || "#1E90FF";
+const getBestClickCount = () => getLocalData("bestClick") || "NA";
+const getTotalWinCount = () => getLocalData("winCount") || 0;
+const getThemeName = () => getLocalData("theme") || "Default";
+
+const getThemeId = (themeName) => themeName.split(" ").join("-");
 const showThemeName = () =>
   (elementById("currentThemeName").innerText = getThemeName()
     .split("-")
     .join(" "));
-const getColor = () => localStorage.getItem("color") || "#1E90FF";
 
-const getBestClickCount = () => localStorage.getItem("bestClick") || "NA";
-const getTotalWinCount = () => localStorage.getItem("winCount") || 0;
 const showTotalWinCount = () =>
   (elementById("totalWinCount").innerText = getTotalWinCount());
 const showBestClickCount = () =>
@@ -44,12 +48,10 @@ let imageList = [];
 const removePopup = () =>
   elementsByclass("popup-container")[0].classList.remove("show-popup");
 
-const createElement = (tag, id, classname, task, bgColor) => {
+const getNewElement = (tag, id, classname) => {
   const newElement = document.createElement(tag);
   if (id) newElement.id = id;
   if (classname) newElement.className = classname;
-  if (task) newElement.setAttribute("onclick", task);
-  if (bgColor) newElement.style.backgroundColor = bgColor;
   return newElement;
 };
 
@@ -67,7 +69,8 @@ function toggleThemeSelectors() {
 
 //  changing theme to selected theme
 function changeTheme(theme) {
-  localStorage.setItem("theme", theme);
+  console.log(theme);
+  setLocalData("theme", theme);
   removePopup();
   startNewGame();
 }
@@ -180,7 +183,7 @@ const startNewGame = () => {
   showTotalWinCount();
   showBestClickCount();
   showClickCount();
-  elementById("colorButton").value = getColor();
+  elementById("colorButton").value = getCurrentColor();
   showToast("Welcome! to Matching Blocks");
   setTimeout(() => {
     hideToast();
@@ -196,45 +199,45 @@ function addEventListeners() {
     "changeBlocksColor(this.value)"
   );
   addEvent(elementById("themeButton"), "onclick", "toggleThemeSelectors()");
-  window.onclick = function (event) {
-    if (event.target == elementsByclass("popup-container")[0]) removePopup();
-    if (event.target == elementsByclass("popup-container")[1]) hideToast();
-  };
+  addEvent(elementsByclass("popup-container")[0], "onclick", removePopup());
+  // window.onclick = function (event) {
+  //   if (event.target == elementsByclass("popup-container")[0]) removePopup();
+  //   if (event.target == elementsByclass("popup-container")[1]) hideToast();
+  // };
 }
-// adding pictures and event handlers on themeselector buttons
+
+// Return new theme button with image and event handler
+function getNewThemeButton(themeId) {
+  let newButton = getNewElement("button", themeId, "theme-button");
+  addEvent(newButton, "onclick", `changeTheme("${themeId}")`);
+  newButton.style.backgroundImage = `url(images/${themeId}/image0.png)`;
+  return newButton;
+}
+
+// adding button for theme in themeselector option
 function setThemeSelectors() {
   const themeSelector = elementById("themeSelector");
   for (let index = 0; index < themeList.length; index++) {
-    let newDiv = createElement("div");
-    const themeId = getThemeId(index);
-    let newButton = createElement(
-      "button",
-      themeId,
-      "theme-pic",
-      `changeTheme("${themeId}")`,
-      0
-    );
-    newButton.style.backgroundImage = `url(images/${newButton.id}/image0.png)`;
-    let newLable = document.createElement("label");
+    const newDiv = getNewElement("div");
+    const currentTheme = themeList[index];
+    const themeId = getThemeId(currentTheme);
+    const newButton = getNewThemeButton(themeId);
+    const newLable = getNewElement("label");
     newLable.setAttribute("for", themeId);
-    newLable.innerHTML = themeList[index];
+    newLable.innerHTML = currentTheme;
     newDiv.appendChild(newButton);
     newDiv.appendChild(newLable);
     themeSelector.appendChild(newDiv);
   }
 }
 
-//creating blocks for the game
+//creating empty blocks for the game
 const createBlocks = () => {
   const blocksContainer = elementById("blocksContainer");
   for (let index = 0; index < 20; index++) {
-    let newBlock = createElement(
-      "button",
-      0,
-      "block-button",
-      `blockClicked(${index})`,
-      getColor()
-    );
+    let newBlock = getNewElement("button", 0, "block-button");
+    addEvent(newBlock, "onclick", `blockClicked(${index})`);
+    newBlock.style.backgroundColor = getCurrentColor();
     blocksContainer.appendChild(newBlock);
   }
 };

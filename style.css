@@ -176,7 +176,7 @@ button:active {
   white-space: nowrap;
 }
 
-.theme-pic {
+.theme-button {
   width            : 64px;
   height           : 64px;
   background-size  : contain;
@@ -271,7 +271,7 @@ button {
     font-size: medium;
   }
 
-  .theme-pic {
+  .theme-button {
     width : 76px;
     height: 76px;
   }
