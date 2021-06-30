@@ -176,11 +176,12 @@ function setUpGame() {
 //starting or building new game
 const startNewGame = () => {
   const blocks = getBlocks();
-  for (let index = 0; index < blocks.length; index++) {
-    setBackground(blocks[index], "none");
-    blocks[index].style.visibility = "visible";
-  }
   setUpGame();
+  for (let index = 0; index < blocks.length; index++) {
+    blocks[index].style.visibility = "visible";
+    setBackground(blocks[index], imageList[index]);
+    setBackground(blocks[index], "none");
+  }
   elementById("colorButton").value = getCurrentColor();
   showToast("Welcome! to Matching Blocks");
   setTimeout(hideToast, 2500);
