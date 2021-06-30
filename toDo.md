@@ -1,5 +1,5 @@
 - [x] box shadow on cards
-- [ ] flip animation
+- [x] opacity change on pair found
 - [ ] images loading issue(not fast enough)
 - [ ] refactoring code
-- [x] opacity change on pair found
+- [ ] try another logic for blocks clicking

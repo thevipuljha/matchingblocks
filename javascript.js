@@ -3,8 +3,7 @@ const elementsByclass = (className) =>
   document.getElementsByClassName(className);
 const getLocalData = (key) => localStorage.getItem(key);
 const setLocalData = (key, value) => localStorage.setItem(key, value);
-const addEvent = (element, event, task) => element.setAttribute(event, task);
-
+const addOnClick = (element, task) => element.setAttribute("onclick", task);
 const themeList = [
   "Ben 10",
   "Cartoons",
@@ -20,6 +19,11 @@ const getCurrentColor = () => getLocalData("color") || "#1E90FF";
 const getBestClickCount = () => getLocalData("bestClick") || "NA";
 const getTotalWinCount = () => getLocalData("winCount") || 0;
 const getThemeName = () => getLocalData("theme") || "Default";
+const setBlocksColor = () =>
+  document.documentElement.style.setProperty(
+    "--block-color",
+    getCurrentColor()
+  );
 
 const getThemeId = (themeName) => themeName.split(" ").join("-");
 const showThemeName = () =>
@@ -45,8 +49,10 @@ let tileClickCount,
   totalClickCount;
 let imageList = [];
 
-const removePopup = () =>
-  elementsByclass("popup-container")[0].classList.remove("show-popup");
+const getThemeContainer = () => elementsByclass("popup-container")[0];
+const getToastContainer = () => elementsByclass("popup-container")[1];
+
+const removePopup = () => getThemeContainer().classList.remove("show-popup");
 
 const getNewElement = (tag, id, classname) => {
   const newElement = document.createElement(tag);
@@ -56,16 +62,13 @@ const getNewElement = (tag, id, classname) => {
 };
 
 const showToast = (message) => {
-  elementsByclass("popup-container")[1].classList.toggle("show-popup");
-  if (message) elementById("toast").innerText = message;
+  getToastContainer().classList.add("show-popup");
+  elementById("toast").innerText = message;
 };
-const hideToast = () =>
-  elementsByclass("popup-container")[1].classList.remove("show-popup");
+const hideToast = () => getToastContainer().classList.remove("show-popup");
 
-// toggling theme selectors div on theme button click
-function toggleThemeSelectors() {
-  elementsByclass("popup-container")[0].classList.add("show-popup");
-}
+const showThemeSelectors = () =>
+  getThemeContainer().classList.add("show-popup");
 
 //  changing theme to selected theme
 function changeTheme(theme) {
@@ -73,14 +76,6 @@ function changeTheme(theme) {
   setLocalData("theme", theme);
   removePopup();
   startNewGame();
-}
-// changing blocks color according to selected color
-function changeBlocksColor(selectedColor) {
-  localStorage.setItem("color", selectedColor);
-  const blocks = elementsByclass("block-button");
-  for (let index = 0; index < blocks.length; index++) {
-    blocks[index].style.backgroundColor = selectedColor;
-  }
 }
 
 // making paired blocks different from different from others
@@ -106,7 +101,7 @@ function pairFound() {
     setTimeout(() => {
       hideToast();
       startNewGame();
-    }, 3000);
+    }, 2500);
   }
 }
 
@@ -164,52 +159,57 @@ function getThemeImageList() {
   return imageList;
 }
 
-//starting or building new game
-const startNewGame = () => {
-  const blocks = getBlocks();
-  for (let index = 0; index < blocks.length; index++) {
-    blocks[index].disabled = false;
-    setBackground(blocks[index], "none");
-    blocks[index].innerText = "";
-    blocks[index].style.visibility = "visible";
-  }
-  tileClickCount = 0;
-  firstTileIndex = 0;
-  secondTileIndex = 0;
-  totalScore = 0;
-  totalClickCount = 0;
-  imageList = getThemeImageList();
+function setUpGame() {
+  tileClickCount =
+    firstTileIndex =
+    secondTileIndex =
+    totalScore =
+    totalClickCount =
+      0;
   showThemeName();
   showTotalWinCount();
   showBestClickCount();
   showClickCount();
+  imageList = getThemeImageList();
+}
+
+//starting or building new game
+const startNewGame = () => {
+  const blocks = getBlocks();
+  for (let index = 0; index < blocks.length; index++) {
+    setBackground(blocks[index], "none");
+    blocks[index].style.visibility = "visible";
+  }
+  setUpGame();
   elementById("colorButton").value = getCurrentColor();
   showToast("Welcome! to Matching Blocks");
-  setTimeout(() => {
-    hideToast();
-  }, 2500);
+  setTimeout(hideToast, 2500);
 };
+
+// changing blocks color according to selected color
+function changeBlocksColor(selectedColor) {
+  setLocalData("color", selectedColor);
+  setBlocksColor();
+}
 
 // adding eventListeners to html elements
 function addEventListeners() {
-  addEvent(elementById("newGameButton"), "onclick", "startNewGame()");
-  addEvent(
-    elementById("colorButton"),
+  addOnClick(elementById("newGameButton"), "startNewGame()");
+  addOnClick(elementById("themeButton"), "showThemeSelectors()");
+  elementById("colorButton").setAttribute(
     "onchange",
     "changeBlocksColor(this.value)"
   );
-  addEvent(elementById("themeButton"), "onclick", "toggleThemeSelectors()");
-  addEvent(elementsByclass("popup-container")[0], "onclick", removePopup());
-  // window.onclick = function (event) {
-  //   if (event.target == elementsByclass("popup-container")[0]) removePopup();
-  //   if (event.target == elementsByclass("popup-container")[1]) hideToast();
-  // };
+  window.onclick = (event) => {
+    if (event.target == getThemeContainer()) removePopup();
+    if (event.target == getToastContainer()) hideToast();
+  };
 }
 
 // Return new theme button with image and event handler
 function getNewThemeButton(themeId) {
   let newButton = getNewElement("button", themeId, "theme-button");
-  addEvent(newButton, "onclick", `changeTheme("${themeId}")`);
+  addOnClick(newButton, `changeTheme("${themeId}")`);
   newButton.style.backgroundImage = `url(images/${themeId}/image0.png)`;
   return newButton;
 }
@@ -234,10 +234,10 @@ function setThemeSelectors() {
 //creating empty blocks for the game
 const createBlocks = () => {
   const blocksContainer = elementById("blocksContainer");
+  setBlocksColor();
   for (let index = 0; index < 20; index++) {
     let newBlock = getNewElement("button", 0, "block-button");
-    addEvent(newBlock, "onclick", `blockClicked(${index})`);
-    newBlock.style.backgroundColor = getCurrentColor();
+    addOnClick(newBlock, `blockClicked(${index})`);
     blocksContainer.appendChild(newBlock);
   }
 };

@@ -1,3 +1,7 @@
+:root {
+  --block-color: #1E90FF;
+}
+
 html {
   width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -90,6 +94,7 @@ main {
   border            : none;
   font-size         : 3em;
   color             : white;
+  background-color  : var(--block-color);
   -moz-box-shadow   : 0px 0px 5px 2px #aaa;
   -webkit-box-shadow: 0px 0px 5px 2px #aaa;
   box-shadow        : 0px 0px 5px 2px #aaa;
