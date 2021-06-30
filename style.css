@@ -24,23 +24,16 @@ header h2 {
 }
 
 /* header end */
-main {
-  width      : 100%;
-  display    : flex;
-  flex-flow  : column nowrap;
-  align-items: center;
-}
 
 .info-container {
+  width      : 100%;
   display    : grid;
   place-items: center;
-  width      : 90vw;
 }
 
 .game-info {
   table-layout   : fixed;
   border-collapse: collapse;
-  border-radius  : 10px;
   width          : 100%;
   border         : 2px solid crimson;
 }
@@ -65,32 +58,39 @@ main {
   width: 20%;
 }
 
+main {
+  width                : 100%;
+  display              : grid;
+  grid-template-columns: 1fr;
+  place-items          : center;
+}
+
 .blocks-container {
   margin-top        : 30px;
-  padding           : 1.5em;
+  padding           : 1.2em;
   -moz-box-shadow   : 0px 0px 10px 1px #888888;
   -webkit-box-shadow: 0px 0px 10px 1px #888888;
   box-shadow        : 0px 0px 10px 1px #888888;
   border-radius     : 8px;
+  display           : grid;
+  place-items       : center;
   width             : max-content;
 }
 
 #blocksContainer {
-  width                : 100%;
   display              : grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows   : repeat(4, 1fr);
-  gap                  : 6px;
-  place-items          : center;
+  gap                  : 8px;
 }
 
 .block-button {
   user-select       : none;
-  border-radius     : 5px;
+  border-radius     : 6px;
   background-size   : cover;
   background-repeat : no-repeat;
-  width             : 16vw;
-  height            : 16vw;
+  width             : 15vw;
+  height            : 15vw;
   border            : none;
   font-size         : 3em;
   color             : white;
@@ -237,13 +237,28 @@ button {
     position: relative;
   }
 
-  .info-container {
-    width: 70vw;
+  #toast {
+    width : 50vw;
+    height: 30vh;
   }
 
-  #toast {
-    width : 30vw;
-    height: 30vh;
+  .game-info {
+    width: 70%;
+  }
+
+  .main {
+    grid-template-columns: 3fr 1fr;
+    margin               : 30px
+  }
+
+  .options-div {
+    flex-direction: column;
+    height        : 80%;
+  }
+
+  .blocks-container,
+  .options-div {
+    margin: 0;
   }
 
   .social-div-parent {
@@ -257,15 +272,11 @@ button {
     margin-right: 10px;
   }
 
-  #blocksContainer {
-    width: 50%;
-    gap  : 10px;
-  }
-
   .block-button {
     width : 10vw;
     height: 10vw;
   }
+
 
   #themeSelector {
     width : 60vw;
@@ -276,29 +287,38 @@ button {
     font-size: medium;
   }
 
-  .theme-button {
-    width : 76px;
-    height: 76px;
+  .options-div button,
+  #colorButton {
+    height: 56px;
+    width : 132px;
   }
 }
 
 @media screen and (min-width: 70em) {
   .social-div-parent {
-    top            : 0px;
+    top            : -20px;
     right          : 0px;
     justify-content: space-around;
   }
 
-  .info-container {
-    width: 55vw;
+  .main {
+    margin: 30px auto;
+    width : 55%;
+    gap   : 20px;
   }
 
-  #blocksContainer {
-    width: 40%;
+  .game-info {
+    width: 55%;
   }
 
   .block-button {
     width : 108px;
     height: 108px;
+  }
+
+  .options-div button,
+  #colorButton {
+    height: 56px;
+    width : 160px;
   }
 }
